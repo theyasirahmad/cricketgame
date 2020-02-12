@@ -5,6 +5,7 @@ function teamsName() {
     var teamsE = document.getElementById("teams");
     teamsE.innerHTML = team1E.value + " vs " + team2E.value;
     var buttonE = document.createElement("button");
+    buttonE.setAttribute("class", "btn2");
     buttonE.innerHTML = "Start TOSS";
     divE.appendChild(buttonE);
     buttonE.setAttribute("onclick", "toss(this)");
@@ -21,6 +22,7 @@ function toss(rE) {
         tosswinner = "you loss the toss";
     }
     var tossAnounced = document.createElement("h2");
+    tossAnounced.setAttribute('class','toss')
     tossAnounced.innerHTML = tosswinner;
     divE.appendChild(tossAnounced);
     rE.disabled = true;
@@ -28,8 +30,10 @@ function toss(rE) {
     if (toss == 1) {
         var battingbtn = document.createElement("button");
         battingbtn.setAttribute("id", "batting");
+        battingbtn.setAttribute("class", "btn2");
         var bowlingbtn = document.createElement("button");
         bowlingbtn.setAttribute("id", "bowling");
+        bowlingbtn.setAttribute("class", "btn2");
         battingbtn.innerHTML = "batting";
         bowlingbtn.innerHTML = "bowling"
         battingbtn.setAttribute("onclick", "inningsSelected(1)");
@@ -68,22 +72,26 @@ function inningsSelected(argu) {
             innselect = 3;
         }
         else {
-            selectedInnings = "opponents are batting  first";
+            selectedInnings = "opponents are batting first";
             innselect = 4;
         }
     }
 
     var selectedInningsElement = document.createElement("h2");
+    selectedInningsElement.setAttribute('class','toss');
     selectedInningsElement.innerHTML = selectedInnings;
     divE.appendChild(selectedInningsElement);
     var letsStart = document.createElement("button");
     letsStart.innerHTML = "LETS PLAYY!!";
+    letsStart.setAttribute('class','btn')
     letsStart.setAttribute("onclick", "start('" + innselect + "')");
     divE.appendChild(letsStart);
 }
 var table1 = document.createElement("table");
 var batbtn = document.createElement("button");
 var balbtn = document.createElement("button");
+batbtn.setAttribute('class','btn2');
+balbtn.setAttribute('class','btn2');
 var secondInningsTeam;
 var inning1,inning2;
 var secondBtn;
@@ -91,13 +99,24 @@ function start(para) {
    // console.log(para);
     var team1 = team1E.value;
     var team2 = team2E.value;
-    document.documentElement.innerHTML = "";
+    // document.documentElement.innerHTML = "";
+    var body = document.getElementById('body');
+    
+    body.innerHTML='';
+    body.setAttribute('class','container')
+    var header = document.createElement("h1");
+    header.setAttribute('class','header')
+    header.innerHTML = "Two Overs Match";
+    body.appendChild(header);
+
     var announcement = document.createElement("h1");
+    announcement.setAttribute('class','header2')
     announcement.innerHTML = team1 + " vs " + team2;
-    document.body.appendChild(announcement);
+    body.appendChild(announcement);
     // var table1 = document.createElement("table");
-    document.body.appendChild(table1);
-    table1.setAttribute("border", "2");
+    body.appendChild(table1);
+    table1.setAttribute("border", "1");
+    table1.setAttribute('class','scorecard')
     var tablerow = document.createElement("tr");
     tablerow.innerHTML = "SCORE CARD";
 
@@ -125,7 +144,7 @@ function start(para) {
     }
 
     batbtn.setAttribute("onclick", "batting()");
-    document.body.appendChild(batbtn);
+    body.appendChild(batbtn);
     table1.appendChild(tablerow11);
     //}
     // else {
